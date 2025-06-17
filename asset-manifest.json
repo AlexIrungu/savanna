@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/savanna/static/css/main.5a5e8b7a.css",
-    "main.js": "/savanna/static/js/main.a79d7016.js",
+    "main.css": "/savanna/static/css/main.0d2b517b.css",
+    "main.js": "/savanna/static/js/main.60bed01c.js",
     "static/js/453.0f7325c8.chunk.js": "/savanna/static/js/453.0f7325c8.chunk.js",
     "static/media/lions.mp4": "/savanna/static/media/lions.41b00a76cc3dec60c9e1.mp4",
     "static/media/giraffemanor.jpg": "/savanna/static/media/giraffemanor.6788ab166441c890c03c.jpg",
     "static/media/logo.jpeg": "/savanna/static/media/logo.80ba053be8b5f184e143.jpeg",
     "index.html": "/savanna/index.html",
-    "main.5a5e8b7a.css.map": "/savanna/static/css/main.5a5e8b7a.css.map",
-    "main.a79d7016.js.map": "/savanna/static/js/main.a79d7016.js.map",
+    "main.0d2b517b.css.map": "/savanna/static/css/main.0d2b517b.css.map",
+    "main.60bed01c.js.map": "/savanna/static/js/main.60bed01c.js.map",
     "453.0f7325c8.chunk.js.map": "/savanna/static/js/453.0f7325c8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5a5e8b7a.css",
-    "static/js/main.a79d7016.js"
+    "static/css/main.0d2b517b.css",
+    "static/js/main.60bed01c.js"
   ]
 }
