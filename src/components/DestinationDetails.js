@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   ArrowLeft, 
   MapPin, 
@@ -34,176 +34,451 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import BookingModal from './BookingModal';
 import FAQSection from './FaqSection';
 
-const DestinationDetails = ({ destination, onBack }) => {
+const DestinationDetails = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState('overview');
   const [isFavorite, setIsFavorite] = useState(false);
   const [showBookingForm, setShowBookingForm] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState(null);
   const navigate = useNavigate();
-//   const { state } = useLocation();
-//   const destination = state?.destination;
-  
-const [bookingData, setBookingData] = useState({
-  name: '',
-  email: '',
-  phone: '',
-  guests: 2,
-  date: '',
-  package: null,
-  message: ''
-});
-  
-  // Use this for your back button
-  const handleBack = () => {
-    navigate(-1); // Goes back to previous page
-  };
+  const { state } = useLocation();
+  const destination = state?.destination;
 
-  // Sample destination data - in real app this would come from props or API
-  const destinationData = destination || {
-    id: 1,
-    name: "Maasai Mara",
-    description: "Witness the great migration and abundant wildlife in Kenya's most famous reserve. The Maasai Mara National Reserve offers unparalleled wildlife viewing opportunities with its vast savannas, diverse ecosystems, and rich cultural heritage.",
-    detailedDescription: "The Maasai Mara National Reserve, located in Narok County, Kenya, is one of Africa's most celebrated wildlife destinations. Spanning over 1,510 square kilometers, this remarkable ecosystem is part of the greater Mara-Serengeti ecosystem and serves as the northern extension of Tanzania's Serengeti National Park. The reserve is renowned for hosting the Great Migration, one of nature's most spectacular events, where over 1.5 million wildebeest, zebras, and gazelles traverse the plains in search of fresh pastures.",
-    image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&h=400&fit=crop",
-    gallery: [
-      "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&h=600&fit=crop",
-      "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop"
-    ],
-    duration: "3-5 Days",
-    bestTime: "July - October",
-    highlights: ["Great Migration", "Big Five", "Balloon Safaris", "Cultural Experiences", "Photography Tours"],
-    rating: 4.9,
-    reviews: 1247,
-    price: "From $450/day",
-    priceNumeric: 450,
-    category: "Wildlife Safari",
-    location: "Narok County, Kenya",
-    coordinates: { lat: -1.4061, lng: 35.0078 },
-    activities: [
-      {
-        name: "Game Drives",
-        description: "Professional guided game drives in 4x4 vehicles",
-        duration: "3-4 hours",
-        price: "$80"
+  // All destinations data
+  const allDestinations = {
+    "Maasai Mara": {
+      id: 1,
+      name: "Maasai Mara",
+      description: "Witness the great migration and abundant wildlife in Kenya's most famous reserve",
+      detailedDescription: "The Maasai Mara National Reserve is one of Africa's most celebrated wildlife destinations. Spanning over 1,510 square kilometers, this remarkable ecosystem serves as the northern extension of Tanzania's Serengeti National Park. The reserve is renowned for hosting the Great Migration, where over 1.5 million wildebeest, zebras, and gazelles traverse the plains.",
+      image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&h=400&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=800&h=600&fit=crop"
+      ],
+      duration: "3-5 Days",
+      bestTime: "July - October",
+      highlights: ["Great Migration", "Big Five", "Balloon Safaris", "Cultural Experiences"],
+      rating: 4.9,
+      reviews: 1247,
+      price: "From $450/day",
+      priceNumeric: 450,
+      category: "Wildlife Safari",
+      location: "Narok County, Kenya",
+      coordinates: { lat: -1.4061, lng: 35.0078 },
+      activities: [
+        {
+          name: "Game Drives",
+          description: "Professional guided game drives in 4x4 vehicles",
+          duration: "3-4 hours",
+          price: "$80"
+        },
+        {
+          name: "Hot Air Balloon Safari",
+          description: "Aerial view of the savanna at sunrise",
+          duration: "3 hours",
+          price: "$450"
+        }
+      ],
+      accommodation: [
+        {
+          type: "Luxury Safari Lodge",
+          name: "Mara Serena Safari Lodge",
+          price: "$650/night",
+          rating: 4.8,
+          amenities: ["Pool", "Spa", "Restaurant", "WiFi"]
+        }
+      ],
+      weatherInfo: {
+        temperature: "18-28°C",
+        rainfall: "Low during dry season",
+        season: "Dry season ideal for wildlife viewing",
+        clothing: "Light layers, safari colors recommended"
       },
-      {
-        name: "Hot Air Balloon Safari",
-        description: "Aerial view of the savanna at sunrise",
-        duration: "3 hours",
-        price: "$450"
-      },
-      {
-        name: "Cultural Village Visit",
-        description: "Experience authentic Maasai culture",
-        duration: "2-3 hours",
-        price: "$60"
-      },
-      {
-        name: "Photography Tours",
-        description: "Specialized wildlife photography sessions",
-        duration: "Full day",
-        price: "$200"
-      }
-    ],
-    accommodation: [
-      {
-        type: "Luxury Safari Lodge",
-        name: "Mara Serena Safari Lodge",
-        price: "$650/night",
-        rating: 4.8,
-        amenities: ["Pool", "Spa", "Restaurant", "WiFi"]
-      },
-      {
-        type: "Tented Camp",
-        name: "Governors' Camp",
-        price: "$480/night",
-        rating: 4.7,
-        amenities: ["Restaurant", "Bar", "Game Viewing", "WiFi"]
-      },
-      {
-        type: "Budget Camp",
-        name: "Mara River Camp",
-        price: "$120/night",
-        rating: 4.2,
-        amenities: ["Restaurant", "Campfire", "Shared Facilities"]
-      }
-    ],
-    weatherInfo: {
-      temperature: "18-28°C",
-      rainfall: "Low during dry season",
-      season: "Dry season ideal for wildlife viewing",
-      clothing: "Light layers, safari colors recommended"
+      difficulty: "Easy",
+      groupSize: "2-8 people",
+      included: ["Park fees", "Game drives", "Professional guide", "Transportation"],
+      notIncluded: ["International flights", "Visa fees", "Personal expenses"],
+      packages: [
+        {
+          id: 1,
+          name: "Classic Safari Package",
+          duration: "3 Days, 2 Nights",
+          price: 1350,
+          includes: ["Accommodation", "All meals", "Game drives", "Park fees"],
+          description: "Perfect introduction to Maasai Mara"
+        }
+      ],
+      FAQ: [
+        {
+          question: "What is the best time for Great Migration?",
+          answer: "Typically from July to October, with river crossings between July and September."
+        }
+      ],
+      featured: true
     },
-    difficulty: "Easy",
-    groupSize: "2-8 people",
-    included: ["Park fees", "Game drives", "Professional guide", "Transportation", "Meals"],
-    notIncluded: ["International flights", "Visa fees", "Personal expenses", "Tips"],
-    featured: true,
-    packages: [
-      {
-        id: 1,
-        name: "Classic Safari Package",
-        duration: "3 Days, 2 Nights",
-        price: 1350,
-        includes: ["Accommodation", "All meals", "Game drives", "Park fees", "Guide"],
-        description: "Perfect introduction to Maasai Mara with essential experiences"
+    "Nairobi": {
+      id: 2,
+      name: "Nairobi",
+      description: "Kenya's vibrant capital and business hub with modern amenities and cultural attractions",
+      detailedDescription: "Nairobi is Kenya's bustling capital city that perfectly blends urban sophistication with raw African beauty. Known as the 'Green City in the Sun', Nairobi offers a unique mix of modern skyscrapers, historical landmarks, and wildlife experiences just minutes from the city center. From the iconic Nairobi National Park to the vibrant markets and museums, the city provides diverse experiences for every traveler.",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=800&h=600&fit=crop"
+      ],
+      duration: "1-3 Days",
+      bestTime: "Year Round",
+      highlights: ["Business District", "Museums", "Giraffe Centre", "Karen Blixen Museum"],
+      rating: 4.5,
+      reviews: 892,
+      price: "From $200/day",
+      priceNumeric: 200,
+      category: "City Experience",
+      location: "Nairobi, Kenya",
+      coordinates: { lat: -1.2864, lng: 36.8172 },
+      activities: [
+        {
+          name: "City Tour",
+          description: "Comprehensive tour of Nairobi's highlights",
+          duration: "4-6 hours",
+          price: "$75"
+        },
+        {
+          name: "Nairobi National Park Safari",
+          description: "Game drive in the world's only urban national park",
+          duration: "Half day",
+          price: "$120"
+        }
+      ],
+      accommodation: [
+        {
+          type: "5-Star Hotel",
+          name: "The Sarova Stanley",
+          price: "$350/night",
+          rating: 4.7,
+          amenities: ["Pool", "Spa", "Multiple Restaurants", "Business Center"]
+        }
+      ],
+      weatherInfo: {
+        temperature: "15-25°C",
+        rainfall: "Moderate throughout year",
+        season: "Pleasant year-round climate",
+        clothing: "Light layers, comfortable walking shoes"
       },
-      {
-        id: 2,
-        name: "Premium Safari Experience",
-        duration: "5 Days, 4 Nights",
-        price: 2800,
-        includes: ["Luxury accommodation", "All meals", "Game drives", "Balloon safari", "Cultural visit", "Guide"],
-        description: "Comprehensive luxury safari with all premium experiences",
-        popular: true
+      difficulty: "Easy",
+      groupSize: "1-12 people",
+      included: ["City tour", "Museum entries", "Local guide"],
+      notIncluded: ["Meals", "Personal shopping", "Optional activities"],
+      packages: [
+        {
+          id: 1,
+          name: "Essential Nairobi Experience",
+          duration: "2 Days, 1 Night",
+          price: 450,
+          includes: ["Accommodation", "City tour", "Airport transfers"],
+          description: "Perfect introduction to Nairobi"
+        }
+      ],
+      FAQ: [
+        {
+          question: "Is Nairobi safe for tourists?",
+          answer: "Yes, especially in tourist areas and with proper precautions like any major city."
+        }
+      ]
+    },
+    "Diani Beach": {
+      id: 3,
+      name: "Diani Beach",
+      description: "Pristine white sands and crystal clear waters on Kenya's stunning coastline",
+      detailedDescription: "Diani Beach is Kenya's premier beach destination, boasting 17 kilometers of powdery white sand and turquoise waters. Located on the Indian Ocean coast south of Mombasa, Diani offers world-class resorts, water sports, and a relaxed tropical atmosphere. The coral reef just offshore provides excellent snorkeling and diving opportunities with abundant marine life.",
+      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop"
+      ],
+      duration: "3-7 Days",
+      bestTime: "December - March",
+      highlights: ["White Sand Beaches", "Water Sports", "Coral Reefs", "Sunset Dhow Cruises"],
+      rating: 4.8,
+      reviews: 1156,
+      price: "From $300/day",
+      priceNumeric: 300,
+      category: "Beach Paradise",
+      location: "Kwale County, Kenya",
+      coordinates: { lat: -4.3150, lng: 39.5822 },
+      activities: [
+        {
+          name: "Snorkeling Adventure",
+          description: "Explore the vibrant coral reefs",
+          duration: "3 hours",
+          price: "$65"
+        },
+        {
+          name: "Dhow Sunset Cruise",
+          description: "Traditional sailing boat with drinks and snacks",
+          duration: "2 hours",
+          price: "$50"
+        }
+      ],
+      accommodation: [
+        {
+          type: "Beach Resort",
+          name: "Diani Sea Resort",
+          price: "$400/night",
+          rating: 4.6,
+          amenities: ["Beachfront", "Multiple Pools", "Spa", "Water Sports"]
+        }
+      ],
+      weatherInfo: {
+        temperature: "25-32°C",
+        rainfall: "Low during dry season",
+        season: "Hot and humid with cooling sea breezes",
+        clothing: "Light beachwear, sun protection"
       },
-      {
-        id: 3,
-        name: "Photography Safari",
-        duration: "4 Days, 3 Nights",
-        price: 2200,
-        includes: ["Photography guide", "Specialized vehicle", "All meals", "Equipment", "Park fees"],
-        description: "Specialized safari for photography enthusiasts"
-      }
-    ],
-    FAQ: [
-      {
-        question: "What is the best time to visit for the Great Migration?",
-        answer: "The Great Migration typically occurs from July to October, with the dramatic river crossings happening between July and September."
+      difficulty: "Easy",
+      groupSize: "2-10 people",
+      included: ["Beach access", "Basic water equipment", "Resort amenities"],
+      notIncluded: ["Premium water sports", "Spa treatments", "Excursions"],
+      packages: [
+        {
+          id: 1,
+          name: "Beach Getaway Package",
+          duration: "5 Days, 4 Nights",
+          price: 1500,
+          includes: ["Luxury accommodation", "Daily breakfast", "One snorkeling trip"],
+          description: "Perfect beach vacation",
+          popular: true
+        }
+      ],
+      FAQ: [
+        {
+          question: "Are there water sports available?",
+          answer: "Yes, including kite surfing, jet skiing, and scuba diving."
+        }
+      ],
+      featured: true
+    },
+    "Mount Kenya": {
+      id: 4,
+      name: "Mount Kenya",
+      description: "Africa's second-highest peak with breathtaking landscapes and diverse ecosystems",
+      detailedDescription: "Mount Kenya is an ancient extinct volcano and Africa's second highest mountain at 5,199 meters. The mountain offers spectacular scenery with its jagged glacier-clad peaks, alpine forests, and unique high-altitude vegetation. Trekking routes vary from relatively easy walks to technical climbs, all offering stunning views and the chance to see unique wildlife like elephants, buffalo, and rare high-altitude species.",
+      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
+      ],
+      duration: "4-7 Days",
+      bestTime: "January - March",
+      highlights: ["Mountain Climbing", "Alpine Lakes", "Unique Flora", "Glacial Valleys"],
+      rating: 4.7,
+      reviews: 634,
+      price: "From $350/day",
+      priceNumeric: 350,
+      category: "Adventure",
+      location: "Central Kenya",
+      coordinates: { lat: -0.1527, lng: 37.3083 },
+      activities: [
+        {
+          name: "Point Lenana Trek",
+          description: "Summit the third highest peak at 4,985m",
+          duration: "5 days",
+          price: "$1200"
+        },
+        {
+          name: "Mountain Wildlife Safari",
+          description: "Game viewing on the lower slopes",
+          duration: "1 day",
+          price: "$150"
+        }
+      ],
+      accommodation: [
+        {
+          type: "Mountain Lodge",
+          name: "Serena Mountain Lodge",
+          price: "$280/night",
+          rating: 4.3,
+          amenities: ["Game viewing", "Restaurant", "Comfortable rooms"]
+        }
+      ],
+      weatherInfo: {
+        temperature: "Varies with altitude (0-20°C)",
+        rainfall: "Variable",
+        season: "Dry months best for climbing",
+        clothing: "Warm layers, waterproof gear, good boots"
       },
-      {
-        question: "What should I pack for a safari?",
-        answer: "Pack neutral-colored clothing, sun protection, binoculars, camera equipment, and comfortable walking shoes. Avoid bright colors and camouflage patterns."
+      difficulty: "Moderate to Challenging",
+      groupSize: "2-6 people",
+      included: ["Park fees", "Guide", "Basic equipment"],
+      notIncluded: ["Specialized climbing gear", "Personal porters"],
+      packages: [
+        {
+          id: 1,
+          name: "Standard Climbing Package",
+          duration: "6 Days, 5 Nights",
+          price: 2100,
+          includes: ["Full guide service", "Mountain huts", "All meals"],
+          description: "Complete climbing experience"
+        }
+      ],
+      FAQ: [
+        {
+          question: "Do I need climbing experience?",
+          answer: "For Point Lenana, no technical experience needed but good fitness required."
+        }
+      ]
+    },
+    "Lamu Island": {
+      id: 5,
+      name: "Lamu Island",
+      description: "UNESCO World Heritage site with rich Swahili culture and timeless charm",
+      detailedDescription: "Lamu Old Town is Kenya's oldest continually inhabited settlement and a UNESCO World Heritage Site. This magical island preserves Swahili culture with its narrow streets, ornate doors, and traditional dhows. With no cars on the island, transportation is by donkey or boat, maintaining a peaceful, timeless atmosphere. The blend of African, Arab, and Indian influences creates a unique cultural experience.",
+      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop"
+      ],
+      duration: "2-4 Days",
+      bestTime: "October - April",
+      highlights: ["Historic Architecture", "Dhow Sailing", "Cultural Heritage", "Artisan Markets"],
+      rating: 4.6,
+      reviews: 567,
+      price: "From $280/day",
+      priceNumeric: 280,
+      category: "Cultural Heritage",
+      location: "Lamu County, Kenya",
+      coordinates: { lat: -2.2696, lng: 40.9006 },
+      activities: [
+        {
+          name: "Old Town Walking Tour",
+          description: "Explore the historic Swahili architecture",
+          duration: "2-3 hours",
+          price: "$40"
+        },
+        {
+          name: "Dhow Sunset Cruise",
+          description: "Traditional sailing experience",
+          duration: "2 hours",
+          price: "$60"
+        }
+      ],
+      accommodation: [
+        {
+          type: "Boutique Hotel",
+          name: "Lamu House",
+          price: "$320/night",
+          rating: 4.5,
+          amenities: ["Roof terrace", "Seafood restaurant", "Beach access"]
+        }
+      ],
+      weatherInfo: {
+        temperature: "25-32°C",
+        rainfall: "Low during dry season",
+        season: "Hot with coastal breezes",
+        clothing: "Light, modest clothing respecting local culture"
       },
-      {
-        question: "Is it safe to visit Maasai Mara?",
-        answer: "Yes, Maasai Mara is very safe for tourists. All game drives are conducted with experienced guides, and lodges maintain high safety standards."
-      }
-    ]
+      difficulty: "Easy",
+      groupSize: "2-8 people",
+      included: ["Cultural guide", "Historical sites"],
+      notIncluded: ["Boat transfers", "Special activities"],
+      packages: [
+        {
+          id: 1,
+          name: "Cultural Immersion Package",
+          duration: "3 Days, 2 Nights",
+          price: 850,
+          includes: ["Accommodation", "Guided tours", "Dhow trip"],
+          description: "Deep dive into Swahili culture"
+        }
+      ],
+      FAQ: [
+        {
+          question: "Is there nightlife on Lamu?",
+          answer: "Nightlife is quiet and respectful of local Muslim culture."
+        }
+      ]
+    },
+    "Amboseli": {
+      id: 6,
+      name: "Amboseli",
+      description: "Iconic views of Mt. Kilimanjaro backdrop with spectacular elephant herds",
+      detailedDescription: "Amboseli National Park is famous for its large elephant herds and stunning views of Mount Kilimanjaro across the border in Tanzania. The park's varied ecosystems include dried-up lake beds, swamps, and savannah, supporting diverse wildlife. Amboseli is one of the best places in Africa to observe elephants at close range, with some of the largest tusks recorded.",
+      image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&h=400&fit=crop",
+      gallery: [
+        "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&h=600&fit=crop",
+        "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&h=600&fit=crop"
+      ],
+      duration: "2-3 Days",
+      bestTime: "June - October",
+      highlights: ["Mt. Kilimanjaro Views", "Elephant Herds", "Maasai Culture", "Bird Watching"],
+      rating: 4.8,
+      reviews: 923,
+      price: "From $400/day",
+      priceNumeric: 400,
+      category: "Wildlife Safari",
+      location: "Kajiado County, Kenya",
+      coordinates: { lat: -2.6531, lng: 37.2606 },
+      activities: [
+        {
+          name: "Game Drives",
+          description: "Morning and evening wildlife viewing",
+          duration: "3-4 hours each",
+          price: "$90"
+        },
+        {
+          name: "Maasai Village Visit",
+          description: "Authentic cultural experience",
+          duration: "2 hours",
+          price: "$50"
+        }
+      ],
+      accommodation: [
+        {
+          type: "Safari Lodge",
+          name: "Amboseli Serena Lodge",
+          price: "$450/night",
+          rating: 4.6,
+          amenities: ["Pool", "View of Kilimanjaro", "Game viewing deck"]
+        }
+      ],
+      weatherInfo: {
+        temperature: "20-30°C",
+        rainfall: "Low during dry season",
+        season: "Dry season best for clear Kilimanjaro views",
+        clothing: "Neutral colors, sun protection"
+      },
+      difficulty: "Easy",
+      groupSize: "2-8 people",
+      included: ["Park fees", "Game drives"],
+      notIncluded: ["Cultural visits", "Special activities"],
+      packages: [
+        {
+          id: 1,
+          name: "Elephant Safari Package",
+          duration: "3 Days, 2 Nights",
+          price: 1200,
+          includes: ["Lodging", "All meals", "Daily game drives"],
+          description: "Focus on elephant observation",
+          popular: true
+        }
+      ],
+      FAQ: [
+        {
+          question: "How often is Kilimanjaro visible?",
+          answer: "Most clear mornings, especially June-October."
+        }
+      ],
+      featured: true
+    }
   };
 
-  const nextImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === destinationData.gallery.length - 1 ? 0 : prev + 1
-    );
-  };
+  // Get the specific destination data
+  const destinationData = allDestinations[destination?.name] || destination || allDestinations["Maasai Mara"];
 
-  const prevImage = () => {
-    setCurrentImageIndex((prev) => 
-      prev === 0 ? destinationData.gallery.length - 1 : prev - 1
-    );
-  };
-
-  const tabs = [
-    { id: 'overview', label: 'Overview', icon: Info },
-    { id: 'activities', label: 'Activities', icon: Activity },
-    { id: 'accommodation', label: 'Stay', icon: Home },
-    { id: 'packages', label: 'Packages', icon: Award }
-  ];
+  // Rest of your component code remains the same...
+  // [Previous component code continues...]
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-eerie-black via-savanna-dark to-eerie-black">
@@ -211,8 +486,8 @@ const [bookingData, setBookingData] = useState({
       <div className="sticky top-0 z-40 bg-eerie-black/95 backdrop-blur-sm border-b border-beaver/20">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-             <button 
-              onClick={handleBack}
+            <button 
+              onClick={() => navigate(-1)}
               className="flex items-center space-x-2 text-ghost-white hover:text-mindaro transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
@@ -238,7 +513,7 @@ const [bookingData, setBookingData] = useState({
       <div className="relative h-[80vh] overflow-hidden">
         <div className="absolute inset-0">
           <img 
-            src={destinationData.gallery[currentImageIndex]}
+            src={destinationData.gallery?.[currentImageIndex] || destinationData.image}
             alt={destinationData.name}
             className="w-full h-full object-cover"
           />
@@ -246,31 +521,47 @@ const [bookingData, setBookingData] = useState({
         </div>
 
         {/* Image Navigation */}
-        <button 
-          onClick={prevImage}
-          className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
-        >
-          <ChevronLeft className="w-6 h-6 text-ghost-white" />
-        </button>
-        <button 
-          onClick={nextImage}
-          className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
-        >
-          <ChevronRight className="w-6 h-6 text-ghost-white" />
-        </button>
+        {destinationData.gallery?.length > 1 && (
+          <>
+            <button 
+              onClick={() => {
+                if (!destinationData.gallery || destinationData.gallery.length === 0) return;
+                setCurrentImageIndex(prev => 
+                  prev === 0 ? destinationData.gallery.length - 1 : prev - 1
+                );
+              }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
+            >
+              <ChevronLeft className="w-6 h-6 text-ghost-white" />
+            </button>
+            <button 
+              onClick={() => {
+                if (!destinationData.gallery || destinationData.gallery.length === 0) return;
+                setCurrentImageIndex(prev => 
+                  prev === destinationData.gallery.length - 1 ? 0 : prev + 1
+                );
+              }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
+            >
+              <ChevronRight className="w-6 h-6 text-ghost-white" />
+            </button>
+          </>
+        )}
 
         {/* Image Indicators */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
-          {destinationData.gallery.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentImageIndex(index)}
-              className={`w-2 h-2 rounded-full transition-colors ${
-                index === currentImageIndex ? 'bg-mindaro' : 'bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
+        {destinationData.gallery?.length > 1 && (
+          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+            {destinationData.gallery.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-2 h-2 rounded-full transition-colors ${
+                  index === currentImageIndex ? 'bg-mindaro' : 'bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Title Overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -316,26 +607,34 @@ const [bookingData, setBookingData] = useState({
       <div className="bg-beaver/10 border-b border-beaver/20">
         <div className="container mx-auto px-6 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <Calendar className="w-6 h-6 text-beaver mx-auto mb-2" />
-              <div className="text-ghost-white font-raleway font-bold">{destinationData.duration}</div>
-              <div className="text-ghost-white/70 text-sm font-raleway">Duration</div>
-            </div>
-            <div className="text-center">
-              <Sun className="w-6 h-6 text-mindaro mx-auto mb-2" />
-              <div className="text-ghost-white font-raleway font-bold">{destinationData.bestTime}</div>
-              <div className="text-ghost-white/70 text-sm font-raleway">Best Time</div>
-            </div>
-            <div className="text-center">
-              <Users className="w-6 h-6 text-beaver mx-auto mb-2" />
-              <div className="text-ghost-white font-raleway font-bold">{destinationData.groupSize}</div>
-              <div className="text-ghost-white/70 text-sm font-raleway">Group Size</div>
-            </div>
-            <div className="text-center">
-              <Compass className="w-6 h-6 text-mindaro mx-auto mb-2" />
-              <div className="text-ghost-white font-raleway font-bold">{destinationData.difficulty}</div>
-              <div className="text-ghost-white/70 text-sm font-raleway">Difficulty</div>
-            </div>
+            {destinationData.duration && (
+              <div className="text-center">
+                <Calendar className="w-6 h-6 text-beaver mx-auto mb-2" />
+                <div className="text-ghost-white font-raleway font-bold">{destinationData.duration}</div>
+                <div className="text-ghost-white/70 text-sm font-raleway">Duration</div>
+              </div>
+            )}
+            {destinationData.bestTime && (
+              <div className="text-center">
+                <Sun className="w-6 h-6 text-mindaro mx-auto mb-2" />
+                <div className="text-ghost-white font-raleway font-bold">{destinationData.bestTime}</div>
+                <div className="text-ghost-white/70 text-sm font-raleway">Best Time</div>
+              </div>
+            )}
+            {destinationData.groupSize && (
+              <div className="text-center">
+                <Users className="w-6 h-6 text-beaver mx-auto mb-2" />
+                <div className="text-ghost-white font-raleway font-bold">{destinationData.groupSize}</div>
+                <div className="text-ghost-white/70 text-sm font-raleway">Group Size</div>
+              </div>
+            )}
+            {destinationData.difficulty && (
+              <div className="text-center">
+                <Compass className="w-6 h-6 text-mindaro mx-auto mb-2" />
+                <div className="text-ghost-white font-raleway font-bold">{destinationData.difficulty}</div>
+                <div className="text-ghost-white/70 text-sm font-raleway">Difficulty</div>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -347,7 +646,12 @@ const [bookingData, setBookingData] = useState({
           <div className="lg:col-span-2 space-y-8">
             {/* Navigation Tabs */}
             <div className="flex space-x-1 bg-beaver/10 rounded-xl p-1 border border-beaver/20">
-              {tabs.map((tab) => (
+              {[
+                { id: 'overview', label: 'Overview', icon: Info },
+                { id: 'activities', label: destinationData.category === 'City Experience' ? 'Attractions' : 'Activities', icon: Activity },
+                { id: 'accommodation', label: 'Stay', icon: Home },
+                { id: 'packages', label: destinationData.category === 'City Experience' ? 'Tour Options' : 'Packages', icon: Award }
+              ].map((tab) => (
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
@@ -380,7 +684,7 @@ const [bookingData, setBookingData] = useState({
                   <div>
                     <h4 className="font-playfair text-xl font-bold text-ghost-white mb-4">Highlights</h4>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                      {destinationData.highlights.map((highlight, index) => (
+                      {destinationData.highlights?.map((highlight, index) => (
                         <div key={index} className="flex items-center space-x-3 bg-beaver/10 rounded-lg p-3">
                           <CheckCircle className="w-5 h-5 text-mindaro" />
                           <span className="text-ghost-white font-raleway">{highlight}</span>
@@ -393,7 +697,7 @@ const [bookingData, setBookingData] = useState({
                     <div>
                       <h4 className="font-playfair text-xl font-bold text-ghost-white mb-4">What's Included</h4>
                       <ul className="space-y-2">
-                        {destinationData.included.map((item, index) => (
+                        {destinationData.included?.map((item, index) => (
                           <li key={index} className="flex items-center space-x-2 text-ghost-white/80 font-raleway">
                             <CheckCircle className="w-4 h-4 text-mindaro" />
                             <span>{item}</span>
@@ -404,7 +708,7 @@ const [bookingData, setBookingData] = useState({
                     <div>
                       <h4 className="font-playfair text-xl font-bold text-ghost-white mb-4">Not Included</h4>
                       <ul className="space-y-2">
-                        {destinationData.notIncluded.map((item, index) => (
+                        {destinationData.notIncluded?.map((item, index) => (
                           <li key={index} className="flex items-center space-x-2 text-ghost-white/60 font-raleway">
                             <div className="w-4 h-4 border-2 border-ghost-white/40 rounded-full"></div>
                             <span>{item}</span>
@@ -418,109 +722,135 @@ const [bookingData, setBookingData] = useState({
 
               {activeTab === 'activities' && (
                 <div className="space-y-6">
-                  <h3 className="font-playfair text-2xl font-bold text-ghost-white mb-6">Available Activities</h3>
-                  <div className="grid gap-6">
-                    {destinationData.activities.map((activity, index) => (
-                      <div key={index} className="bg-beaver/10 rounded-xl p-6 border border-beaver/20">
-                        <div className="flex justify-between items-start mb-4">
-                          <div>
-                            <h4 className="font-playfair text-xl font-bold text-ghost-white mb-2">{activity.name}</h4>
-                            <p className="text-ghost-white/80 font-raleway">{activity.description}</p>
+                  <h3 className="font-playfair text-2xl font-bold text-ghost-white mb-6">
+                    {destinationData.category === 'City Experience' ? 'Attractions & Activities' : 'Available Activities'}
+                  </h3>
+                  {destinationData.activities?.length > 0 ? (
+                    <div className="grid gap-6">
+                      {destinationData.activities.map((activity, index) => (
+                        <div key={index} className="bg-beaver/10 rounded-xl p-6 border border-beaver/20">
+                          <div className="flex justify-between items-start mb-4">
+                            <div>
+                              <h4 className="font-playfair text-xl font-bold text-ghost-white mb-2">{activity.name}</h4>
+                              <p className="text-ghost-white/80 font-raleway">{activity.description}</p>
+                            </div>
+                            <div className="text-right">
+                              <div className="text-xl font-raleway font-bold text-mindaro">{activity.price}</div>
+                              <div className="text-ghost-white/70 text-sm font-raleway">{activity.duration}</div>
+                            </div>
                           </div>
-                          <div className="text-right">
-                            <div className="text-xl font-raleway font-bold text-mindaro">{activity.price}</div>
-                            <div className="text-ghost-white/70 text-sm font-raleway">{activity.duration}</div>
-                          </div>
+                          <button className="bg-gradient-to-r from-beaver to-mindaro text-eerie-black px-4 py-2 rounded-lg font-raleway font-bold hover:shadow-lg transition-all duration-300">
+                            Book Activity
+                          </button>
                         </div>
-                        <button className="bg-gradient-to-r from-beaver to-mindaro text-eerie-black px-4 py-2 rounded-lg font-raleway font-bold hover:shadow-lg transition-all duration-300">
-                          Book Activity
-                        </button>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-ghost-white/80 font-raleway">
+                      No specific activities listed for this destination. Contact us for customized experiences.
+                    </p>
+                  )}
                 </div>
               )}
 
               {activeTab === 'accommodation' && (
                 <div className="space-y-6">
                   <h3 className="font-playfair text-2xl font-bold text-ghost-white mb-6">Where to Stay</h3>
-                  <div className="grid gap-6">
-                    {destinationData.accommodation.map((place, index) => (
-                      <div key={index} className="bg-beaver/10 rounded-xl p-6 border border-beaver/20">
-                        <div className="flex justify-between items-start mb-4">
-                          <div>
-                            <div className="text-beaver font-raleway font-medium text-sm mb-1">{place.type}</div>
-                            <h4 className="font-playfair text-xl font-bold text-ghost-white mb-2">{place.name}</h4>
-                            <div className="flex items-center space-x-2 mb-3">
-                              <Star className="w-4 h-4 text-mindaro fill-current" />
-                              <span className="text-ghost-white font-raleway">{place.rating}</span>
+                  {destinationData.accommodation?.length > 0 ? (
+                    <div className="grid gap-6">
+                      {destinationData.accommodation.map((place, index) => (
+                        <div key={index} className="bg-beaver/10 rounded-xl p-6 border border-beaver/20">
+                          <div className="flex justify-between items-start mb-4">
+                            <div>
+                              <div className="text-beaver font-raleway font-medium text-sm mb-1">{place.type}</div>
+                              <h4 className="font-playfair text-xl font-bold text-ghost-white mb-2">{place.name}</h4>
+                              {place.rating && (
+                                <div className="flex items-center space-x-2 mb-3">
+                                  <Star className="w-4 h-4 text-mindaro fill-current" />
+                                  <span className="text-ghost-white font-raleway">{place.rating}</span>
+                                </div>
+                              )}
+                            </div>
+                            <div className="text-right">
+                              <div className="text-xl font-raleway font-bold text-mindaro">{place.price}</div>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <div className="text-xl font-raleway font-bold text-mindaro">{place.price}</div>
-                          </div>
+                          {place.amenities?.length > 0 && (
+                            <div className="flex flex-wrap gap-2 mb-4">
+                              {place.amenities.map((amenity, aIndex) => (
+                                <span key={aIndex} className="bg-beaver/20 text-ghost-white px-2 py-1 rounded text-sm font-raleway">
+                                  {amenity}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                          <button className="bg-gradient-to-r from-beaver to-mindaro text-eerie-black px-4 py-2 rounded-lg font-raleway font-bold hover:shadow-lg transition-all duration-300">
+                            Check Availability
+                          </button>
                         </div>
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          {place.amenities.map((amenity, aIndex) => (
-                            <span key={aIndex} className="bg-beaver/20 text-ghost-white px-2 py-1 rounded text-sm font-raleway">
-                              {amenity}
-                            </span>
-                          ))}
-                        </div>
-                        <button className="bg-gradient-to-r from-beaver to-mindaro text-eerie-black px-4 py-2 rounded-lg font-raleway font-bold hover:shadow-lg transition-all duration-300">
-                          Check Availability
-                        </button>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-ghost-white/80 font-raleway">
+                      Accommodation options not specified. We can recommend excellent places based on your preferences.
+                    </p>
+                  )}
                 </div>
               )}
 
               {activeTab === 'packages' && (
                 <div className="space-y-6">
-                  <h3 className="font-playfair text-2xl font-bold text-ghost-white mb-6">Safari Packages</h3>
-                  <div className="grid gap-6">
-                    {destinationData.packages.map((pkg, index) => (
-                      <div key={pkg.id} className={`rounded-xl p-6 border-2 transition-all duration-300 ${
-                        pkg.popular 
-                          ? 'bg-gradient-to-br from-beaver/20 to-mindaro/10 border-beaver' 
-                          : 'bg-beaver/10 border-beaver/20'
-                      }`}>
-                        {pkg.popular && (
-                          <div className="bg-gradient-to-r from-beaver to-mindaro text-eerie-black px-3 py-1 rounded-lg text-sm font-raleway font-bold mb-4 w-fit">
-                            Most Popular
+                  <h3 className="font-playfair text-2xl font-bold text-ghost-white mb-6">
+                    {destinationData.category === 'City Experience' ? 'Tour Packages' : 'Safari Packages'}
+                  </h3>
+                  {destinationData.packages?.length > 0 ? (
+                    <div className="grid gap-6">
+                      {destinationData.packages.map((pkg, index) => (
+                        <div key={pkg.id} className={`rounded-xl p-6 border-2 transition-all duration-300 ${
+                          pkg.popular 
+                            ? 'bg-gradient-to-br from-beaver/20 to-mindaro/10 border-beaver' 
+                            : 'bg-beaver/10 border-beaver/20'
+                        }`}>
+                          {pkg.popular && (
+                            <div className="bg-gradient-to-r from-beaver to-mindaro text-eerie-black px-3 py-1 rounded-lg text-sm font-raleway font-bold mb-4 w-fit">
+                              Most Popular
+                            </div>
+                          )}
+                          <div className="flex justify-between items-start mb-4">
+                            <div>
+                              <h4 className="font-playfair text-xl font-bold text-ghost-white mb-2">{pkg.name}</h4>
+                              <p className="text-ghost-white/80 font-raleway mb-3">{pkg.description}</p>
+                              <div className="text-ghost-white/70 font-raleway text-sm">{pkg.duration}</div>
+                            </div>
+                            <div className="text-right">
+                              <div className="text-2xl font-raleway font-bold text-mindaro">${pkg.price}</div>
+                              <div className="text-ghost-white/70 text-sm font-raleway">per person</div>
+                            </div>
                           </div>
-                        )}
-                        <div className="flex justify-between items-start mb-4">
-                          <div>
-                            <h4 className="font-playfair text-xl font-bold text-ghost-white mb-2">{pkg.name}</h4>
-                            <p className="text-ghost-white/80 font-raleway mb-3">{pkg.description}</p>
-                            <div className="text-ghost-white/70 font-raleway text-sm">{pkg.duration}</div>
+                          <div className="mb-4">
+                            <h5 className="font-raleway font-bold text-ghost-white mb-2">Includes:</h5>
+                            <div className="flex flex-wrap gap-2">
+                              {pkg.includes.map((item, iIndex) => (
+                                <span key={iIndex} className="bg-beaver/20 text-ghost-white px-2 py-1 rounded text-sm font-raleway">
+                                  {item}
+                                </span>
+                              ))}
+                            </div>
                           </div>
-                          <div className="text-right">
-                            <div className="text-2xl font-raleway font-bold text-mindaro">${pkg.price}</div>
-                            <div className="text-ghost-white/70 text-sm font-raleway">per person</div>
-                          </div>
+                          <button 
+                            onClick={() => setSelectedPackage(pkg)}
+                            className="w-full bg-gradient-to-r from-beaver to-mindaro text-eerie-black py-3 rounded-lg font-raleway font-bold hover:shadow-lg transition-all duration-300"
+                          >
+                            Select Package
+                          </button>
                         </div>
-                        <div className="mb-4">
-                          <h5 className="font-raleway font-bold text-ghost-white mb-2">Includes:</h5>
-                          <div className="flex flex-wrap gap-2">
-                            {pkg.includes.map((item, iIndex) => (
-                              <span key={iIndex} className="bg-beaver/20 text-ghost-white px-2 py-1 rounded text-sm font-raleway">
-                                {item}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                        <button 
-                          onClick={() => setSelectedPackage(pkg)}
-                          className="w-full bg-gradient-to-r from-beaver to-mindaro text-eerie-black py-3 rounded-lg font-raleway font-bold hover:shadow-lg transition-all duration-300"
-                        >
-                          Select Package
-                        </button>
-                      </div>
-                    ))}
-                  </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-ghost-white/80 font-raleway">
+                      Contact us for customized package options for this destination.
+                    </p>
+                  )}
                 </div>
               )}
             </div>
@@ -539,14 +869,18 @@ const [bookingData, setBookingData] = useState({
                 </div>
                 
                 <div className="grid grid-cols-2 gap-3">
-                  <div className="text-center p-3 bg-beaver/10 rounded-lg">
-                    <Calendar className="w-5 h-5 text-beaver mx-auto mb-1" />
-                    <div className="text-ghost-white text-sm font-raleway">{destinationData.duration}</div>
-                  </div>
-                  <div className="text-center p-3 bg-beaver/10 rounded-lg">
-                    <Users className="w-5 h-5 text-mindaro mx-auto mb-1" />
-                    <div className="text-ghost-white text-sm font-raleway">{destinationData.groupSize}</div>
-                  </div>
+                  {destinationData.duration && (
+                    <div className="text-center p-3 bg-beaver/10 rounded-lg">
+                      <Calendar className="w-5 h-5 text-beaver mx-auto mb-1" />
+                      <div className="text-ghost-white text-sm font-raleway">{destinationData.duration}</div>
+                    </div>
+                  )}
+                  {destinationData.groupSize && (
+                    <div className="text-center p-3 bg-beaver/10 rounded-lg">
+                      <Users className="w-5 h-5 text-mindaro mx-auto mb-1" />
+                      <div className="text-ghost-white text-sm font-raleway">{destinationData.groupSize}</div>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -566,22 +900,41 @@ const [bookingData, setBookingData] = useState({
             <div className="bg-beaver/10 rounded-2xl p-6 border border-beaver/20">
               <h3 className="font-playfair text-xl font-bold text-ghost-white mb-4 flex items-center space-x-2">
                 <Thermometer className="w-5 h-5 text-beaver" />
-                <span>Weather & Climate</span>
+                <span>
+                  {destinationData.category === 'Beach Paradise' ? 'Beach Weather' : 
+                   destinationData.category === 'City Experience' ? 'City Climate' : 'Weather & Climate'}
+                </span>
               </h3>
-              <div className="space-y-3">
-                <div className="flex justify-between">
-                  <span className="text-ghost-white/80 font-raleway">Temperature</span>
-                  <span className="text-ghost-white font-raleway font-medium">{destinationData.weatherInfo.temperature}</span>
+              {destinationData.weatherInfo ? (
+                <div className="space-y-3">
+                  <div className="flex justify-between">
+                    <span className="text-ghost-white/80 font-raleway">Temperature</span>
+                    <span className="text-ghost-white font-raleway font-medium">
+                      {destinationData.weatherInfo.temperature}
+                    </span>
+                  </div>
+                  {destinationData.weatherInfo.season && (
+                    <div className="flex justify-between">
+                      <span className="text-ghost-white/80 font-raleway">Season</span>
+                      <span className="text-ghost-white font-raleway font-medium">
+                        {destinationData.weatherInfo.season}
+                      </span>
+                    </div>
+                  )}
+                  {destinationData.weatherInfo.clothing && (
+                    <div className="flex justify-between">
+                      <span className="text-ghost-white/80 font-raleway">Clothing</span>
+                      <span className="text-ghost-white font-raleway font-medium">
+                        {destinationData.weatherInfo.clothing}
+                      </span>
+                    </div>
+                  )}
                 </div>
-                <div className="flex justify-between">
-                  <span className="text-ghost-white/80 font-raleway">Season</span>
-                  <span className="text-ghost-white font-raleway font-medium">{destinationData.weatherInfo.season}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-ghost-white/80 font-raleway">Clothing</span>
-                  <span className="text-ghost-white font-raleway font-medium">{destinationData.weatherInfo.clothing}</span>
-                </div>
-              </div>
+              ) : (
+                <p className="text-ghost-white/80 font-raleway">
+                  {destinationData.bestTime ? `Best time to visit: ${destinationData.bestTime}` : 'Weather information not available'}
+                </p>
+              )}
             </div>
 
             {/* Contact Info */}
@@ -606,16 +959,25 @@ const [bookingData, setBookingData] = useState({
         </div>
 
         {/* FAQ Section */}
-       
-        <FAQSection />
+        {destinationData.FAQ?.length > 0 && (
+          <div className="mt-16">
+            <h3 className="font-playfair text-3xl font-bold text-ghost-white mb-8 text-center">Frequently Asked Questions</h3>
+            <div className="bg-beaver/5 rounded-2xl p-8 border border-beaver/20">
+              {destinationData.FAQ.map((faq, index) => (
+                <div key={index} className="mb-6 last:mb-0">
+                  <h4 className="font-raleway font-bold text-lg text-ghost-white mb-2">{faq.question}</h4>
+                  <p className="text-ghost-white/80 font-raleway">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Booking Modal */}
         {showBookingForm && (
           <BookingModal 
             destination={destinationData} 
             selectedPackage={selectedPackage} 
-            bookingData={bookingData}
-            setBookingData={setBookingData}
             onClose={() => setShowBookingForm(false)} 
           />
         )}
@@ -623,4 +985,5 @@ const [bookingData, setBookingData] = useState({
     </div>
   );
 };
+
 export default DestinationDetails;
