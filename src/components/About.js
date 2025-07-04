@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, MapPin, Users, Award, Heart, ChevronRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, MapPin, Users, Award, Heart, ChevronRight, Star, Globe, Camera, Shield, Mountain, Waves, TreePine } from 'lucide-react';
+import manor from '../assets/giraffemanor.jpg';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredStat, setHoveredStat] = useState(null);
+  const [activeService, setActiveService] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 300);
+    const timer = setTimeout(() => setIsVisible(true), 200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -15,181 +17,305 @@ const About = () => {
       number: "10+", 
       label: "Years Experience", 
       icon: Award,
-      color: "from-mindaro to-vanilla",
-      description: "Decade of crafting perfect journeys"
+      description: "Decade of expertise"
     },
     { 
-      number: "500+", 
-      label: "Happy Clients", 
-      icon: Users,
-      color: "from-vanilla to-mindaro",
-      description: "Travelers who became friends"
+      number: "1000+", 
+      label: "Adventures Crafted", 
+      icon: Camera,
+      description: "Unforgettable journeys"
     },
     { 
-      number: "50+", 
-      label: "Destinations", 
-      icon: MapPin,
-      color: "from-mindaro to-ghost-white",
-      description: "Hidden gems across Kenya"
+      number: "24/7", 
+      label: "Travel Support", 
+      icon: Shield,
+      description: "Always here for you"
+    },
+    { 
+      number: "100%", 
+      label: "Bespoke Service", 
+      icon: Heart,
+      description: "Tailored to you"
     }
   ];
 
-  const features = [
-    "Personalized itinerary planning",
-    "24/7 local support during travels",
-    "Exclusive access to hidden gems",
-    "Cultural immersion experiences",
-    "Sustainable tourism practices",
-    "Business travel coordination"
+  const services = [
+    {
+      icon: TreePine,
+      title: "Safari Adventures",
+      subtitle: "Maasai Mara & Beyond",
+      description: "Witness the Great Migration, spot the Big Five, and experience Kenya's world-renowned national parks with our expert guides.",
+      features: ["Maasai Mara Wildlife Safaris", "Amboseli Elephant Viewing", "Tsavo National Parks", "Private Game Drives"]
+    },
+    {
+      icon: Waves,
+      title: "Beach Escapes",
+      subtitle: "Coastal Paradise",
+      description: "Relax on pristine white sand beaches, enjoy water sports, and discover the Swahili culture along Kenya's stunning coastline.",
+      features: ["Diani Beach Retreats", "Malindi Cultural Tours", "Watamu Marine Parks", "Lamu Island Adventures"]
+    },
+    {
+      icon: Mountain,
+      title: "Mountain Expeditions",
+      subtitle: "Conquer New Heights",
+      description: "Challenge yourself with Mount Kenya climbing expeditions and explore the breathtaking highlands of East Africa.",
+      features: ["Mount Kenya Climbing", "Aberdare Ranges", "Hell's Gate Adventures", "Rift Valley Escapes"]
+    },
+    {
+      icon: Globe,
+      title: "Cultural Experiences",
+      subtitle: "Rich Heritage",
+      description: "Immerse yourself in Kenya's vibrant culture, meet local communities, and discover authentic traditions and customs.",
+      features: ["Maasai Village Visits", "Samburu Cultural Tours", "Nairobi City Experiences", "Traditional Craft Workshops"]
+    }
+  ];
+
+  const expertise = [
+    {
+      icon: Star,
+      title: "Certified Local Experts",
+      description: "Our team of certified travel professionals brings deep knowledge of Kenya's hidden gems and popular destinations."
+    },
+    {
+      icon: Globe,
+      title: "Multilingual Support",
+      description: "Communicate with confidence in multiple languages, ensuring seamless travel experiences across East Africa."
+    },
+    {
+      icon: Shield,
+      title: "Safe & Responsible Travel",
+      description: "We prioritize your safety while promoting sustainable tourism practices that benefit local communities."
+    }
   ];
 
   return (
-    <section className="py-20 bg-gradient-to-br from-vanilla/30 via-ghost-white to-mindaro/20 relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="absolute top-20 left-10 w-32 h-32 bg-mindaro/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-20 right-10 w-40 h-40 bg-vanilla/20 rounded-full blur-3xl"></div>
-      <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-beaver/10 rounded-full blur-2xl"></div>
-      
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          {/* Content Section */}
-          <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'}`}>
-            <div className="mb-8">
-              <div className="inline-flex items-center space-x-2 bg-mindaro/20 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
-                <Heart className="w-4 h-4 text-savanna-dark" />
-                <span className="text-sm font-medium text-savanna-dark">Passionate Travel Expert</span>
+    <div className="min-h-screen bg-gradient-to-br from-ghost-white via-vanilla/10 to-mindaro/5 font-raleway">
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-4 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-mindaro/5 via-transparent to-vanilla/5"></div>
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div className={`space-y-8 ${isVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'} transition-all duration-1000`}>
+              <div className="space-y-6">
+                <div className="inline-flex items-center space-x-2 bg-mindaro/20 backdrop-blur-sm rounded-full px-6 py-3">
+                  <Heart className="w-5 h-5 text-beaver" />
+                  <span className="text-beaver font-semibold">Kenya's Premier Travel Agency</span>
+                </div>
+                
+                <h1 className="font-playfair text-5xl md:text-6xl font-bold text-eerie-black leading-tight">
+                  Crafting Unforgettable
+                  <span className="block bg-gradient-to-r from-beaver to-mindaro bg-clip-text text-transparent">
+                    African Adventures
+                  </span>
+                </h1>
+                
+                <p className="text-xl text-beaver leading-relaxed max-w-2xl">
+                  We specialize in creating bespoke safari adventures, beach escapes, and cultural experiences across East Africa. From Maasai Mara wildlife safaris to Diani Beach retreats and Mount Kenya expeditions.
+                </p>
               </div>
               
-              <h2 className="font-playfair text-4xl md:text-5xl font-bold text-savanna-dark mb-6 leading-tight">
-                Your Personal Travel
-                <span className="block text-transparent bg-gradient-to-r from-beaver to-savanna-dark bg-clip-text">
-                  Concierge
-                </span>
-              </h2>
-              
-              <div className="w-24 h-1 bg-gradient-to-r from-mindaro to-vanilla rounded-full mb-8"></div>
-            </div>
-            
-            <div className="space-y-6 font-raleway text-beaver text-lg leading-relaxed mb-8">
-              <p className="transform transition-all duration-700 delay-300">
-                As a locally-based travel advisor with extensive knowledge of Kenya's diverse landscapes, cultures, and business environment, I provide <span className="font-semibold text-savanna-dark">personalized service</span> that goes beyond typical tourism.
-              </p>
-              <p className="transform transition-all duration-700 delay-500">
-                Whether you're seeking the thrill of wildlife encounters, meaningful cultural exchanges, or efficient business travel solutions, my expertise ensures a <span className="font-semibold text-savanna-dark">seamless, authentic experience</span>.
-              </p>
-              <p className="transform transition-all duration-700 delay-700">
-                With deep connections throughout the country and a commitment to sustainable, responsible tourism, I create journeys that <span className="font-semibold text-savanna-dark">benefit both travelers and local communities</span>.
-              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link 
+                  to="/contact"
+                  className="group bg-gradient-to-r from-mindaro to-vanilla text-eerie-black px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                >
+                  <span>Start Your Adventure</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
+                
+                <Link 
+                  to="/story"
+                  className="group bg-white/70 backdrop-blur-sm border-2 border-mindaro/30 text-eerie-black px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:border-mindaro transition-all duration-300 flex items-center justify-center space-x-2"
+                >
+                  <span>Our Story</span>
+                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </Link>
+              </div>
             </div>
 
-            {/* Features Grid */}
-            <div className="grid grid-cols-2 gap-3 mb-8">
-              {features.map((feature, index) => (
+            {/* Image */}
+            <div className={`relative ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'} transition-all duration-1000 delay-300`}>
+              <div className="relative group">
+                <div className="relative rounded-3xl overflow-hidden aspect-[4/5] shadow-2xl">
+                  <img 
+                    src={manor}
+                    alt="Kenya Safari Adventure"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-eerie-black/30 via-transparent to-transparent"></div>
+                  
+                  {/* Floating Elements */}
+                  <div className="absolute top-6 right-6 bg-mindaro/90 backdrop-blur-sm rounded-full p-3 shadow-lg">
+                    <TreePine className="w-6 h-6 text-eerie-black" />
+                  </div>
+                  
+                  <div className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-md rounded-2xl p-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <div className="font-semibold text-eerie-black">Kenya Awaits</div>
+                        <div className="text-sm text-beaver">Your Adventure Starts Here</div>
+                      </div>
+                      <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Decorative Elements */}
+                <div className="absolute -top-8 -right-8 w-32 h-32 bg-gradient-to-r from-mindaro to-vanilla rounded-full opacity-20 blur-xl"></div>
+                <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-gradient-to-r from-vanilla to-ghost-white rounded-full opacity-25 blur-2xl"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="py-16 px-4 bg-white/30 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {stats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
                 <div 
                   key={index}
-                  className="flex items-center space-x-2 text-sm text-beaver transform transition-all duration-500 hover:text-savanna-dark"
-                  style={{ transitionDelay: `${800 + index * 100}ms` }}
+                  className={`group bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-mindaro/20 text-center hover:shadow-xl transition-all duration-500 hover:scale-105 ${
+                    isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                  }`}
+                  style={{ transitionDelay: `${400 + index * 100}ms` }}
                 >
-                  <div className="w-2 h-2 bg-mindaro rounded-full flex-shrink-0"></div>
-                  <span>{feature}</span>
+                  <IconComponent className="w-8 h-8 text-mindaro mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
+                  <div className="text-3xl font-bold text-eerie-black mb-2">{stat.number}</div>
+                  <div className="text-sm font-semibold text-beaver mb-1">{stat.label}</div>
+                  <div className="text-xs text-beaver/70">{stat.description}</div>
                 </div>
-              ))}
-            </div>
-            
-            {/* Stats Cards */}
-            <div className="grid grid-cols-3 gap-4 mb-8">
-              {stats.map((stat, index) => {
-                const IconComponent = stat.icon;
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-eerie-black mb-6">
+              Our Signature Experiences
+            </h2>
+            <p className="text-xl text-beaver max-w-3xl mx-auto">
+              From wildlife safaris to beach escapes, we handle every detail of your Kenyan adventure with personalized service and local expertise.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Service Navigation */}
+            <div className="space-y-4">
+              {services.map((service, index) => {
+                const IconComponent = service.icon;
                 return (
-                  <div 
+                  <div
                     key={index}
-                    className={`group relative bg-white/70 backdrop-blur-sm rounded-2xl p-4 border border-mindaro/20 cursor-pointer transform transition-all duration-500 hover:scale-105 hover:shadow-xl hover:bg-white/90 ${
-                      isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+                    className={`group cursor-pointer rounded-2xl p-6 transition-all duration-300 ${
+                      activeService === index 
+                        ? 'bg-gradient-to-r from-mindaro/20 to-vanilla/20 border-2 border-mindaro/30' 
+                        : 'bg-white/50 hover:bg-white/70 border border-mindaro/10'
                     }`}
-                    style={{ transitionDelay: `${1000 + index * 200}ms` }}
-                    onMouseEnter={() => setHoveredStat(index)}
-                    onMouseLeave={() => setHoveredStat(null)}
+                    onClick={() => setActiveService(index)}
                   >
-                    <div className={`absolute inset-0 bg-gradient-to-r ${stat.color} opacity-0 group-hover:opacity-10 rounded-2xl transition-opacity duration-300`}></div>
-                    <div className="relative z-10">
-                      <div className="flex items-center justify-between mb-2">
-                        <div className="text-2xl font-bold text-savanna-dark group-hover:scale-110 transition-transform duration-300">
-                          {stat.number}
-                        </div>
-                        <IconComponent className="w-5 h-5 text-mindaro group-hover:text-savanna-dark transition-colors duration-300" />
+                    <div className="flex items-start space-x-4">
+                      <div className={`p-3 rounded-xl transition-colors duration-300 ${
+                        activeService === index ? 'bg-mindaro/30' : 'bg-mindaro/10 group-hover:bg-mindaro/20'
+                      }`}>
+                        <IconComponent className="w-6 h-6 text-beaver" />
                       </div>
-                      <div className="text-xs text-beaver group-hover:text-savanna-dark transition-colors duration-300">
-                        {stat.label}
+                      <div className="flex-1">
+                        <h3 className="font-semibold text-eerie-black text-lg mb-1">{service.title}</h3>
+                        <p className="text-beaver text-sm font-medium mb-2">{service.subtitle}</p>
+                        <p className="text-beaver/80 text-sm">{service.description}</p>
                       </div>
-                      {hoveredStat === index && (
-                        <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 bg-savanna-dark text-white text-xs px-3 py-1 rounded-lg whitespace-nowrap opacity-0 animate-pulse">
-                          {stat.description}
-                        </div>
-                      )}
                     </div>
                   </div>
                 );
               })}
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <button className="group bg-gradient-to-r from-mindaro to-vanilla text-savanna-dark px-8 py-4 rounded-full font-raleway font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2">
-                <span>Let's Plan Together</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
+            {/* Service Details */}
+            <div className="bg-white/70 backdrop-blur-sm rounded-3xl p-8 border border-mindaro/20">
+              <div className="mb-6">
+                <h3 className="font-playfair text-3xl font-bold text-eerie-black mb-4">
+                  {services[activeService].title}
+                </h3>
+                <p className="text-beaver text-lg leading-relaxed">
+                  {services[activeService].description}
+                </p>
+              </div>
               
-              <button className="group bg-white/50 backdrop-blur-sm border-2 border-mindaro/30 text-savanna-dark px-8 py-4 rounded-full font-raleway font-semibold text-lg hover:bg-white/80 hover:border-mindaro transition-all duration-300 flex items-center justify-center space-x-2">
-                <span>Get to Know Me</span>
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-              </button>
-            </div>
-          </div>
-          
-          {/* Image Section */}
-          <div className={`relative transform transition-all duration-1000 delay-500 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-12 opacity-0'}`}>
-            <div className="relative group">
-              {/* Main image container */}
-              <div className="relative rounded-3xl overflow-hidden aspect-[4/5] bg-gradient-to-br from-beaver/20 to-savanna-dark/20 backdrop-blur-sm border border-mindaro/20 shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop&crop=face"
-                  alt="Travel Advisor"
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-savanna-dark/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                {/* Floating info card */}
-                <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md rounded-2xl p-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                    <div>
-                      <div className="font-semibold text-savanna-dark">Available Now</div>
-                      <div className="text-sm text-beaver">Ready to plan your journey</div>
-                    </div>
+              <div className="space-y-3">
+                <h4 className="font-semibold text-eerie-black text-lg">What's Included:</h4>
+                {services[activeService].features.map((feature, index) => (
+                  <div key={index} className="flex items-center space-x-3">
+                    <div className="w-2 h-2 bg-mindaro rounded-full"></div>
+                    <span className="text-beaver">{feature}</span>
                   </div>
-                </div>
-              </div>
-              
-              {/* Decorative elements */}
-              <div className="absolute -bottom-8 -right-8 w-32 h-32 bg-gradient-to-r from-mindaro to-vanilla rounded-full opacity-20 blur-xl group-hover:opacity-30 transition-opacity duration-500"></div>
-              <div className="absolute -top-8 -left-8 w-24 h-24 bg-gradient-to-r from-vanilla to-ghost-white rounded-full opacity-25 blur-2xl group-hover:opacity-40 transition-opacity duration-500"></div>
-              
-              {/* Floating badges */}
-              <div className="absolute top-6 right-6 bg-mindaro/90 backdrop-blur-sm rounded-full p-3 shadow-lg transform -translate-y-2 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200">
-                <Award className="w-6 h-6 text-savanna-dark" />
-              </div>
-              
-              <div className="absolute top-20 -left-4 bg-white/90 backdrop-blur-sm rounded-2xl p-3 shadow-lg transform -translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 delay-300">
-                <div className="text-center">
-                  <div className="text-lg font-bold text-savanna-dark">Kenya</div>
-                  <div className="text-xs text-beaver">Expert</div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      {/* Expertise Section */}
+      <section className="py-16 px-4 bg-gradient-to-r from-mindaro/5 via-vanilla/5 to-ghost-white/10">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-12">
+            <h2 className="font-playfair text-4xl font-bold text-eerie-black mb-6">
+              Why Choose Us
+            </h2>
+            <p className="text-lg text-beaver max-w-2xl mx-auto">
+              Our certified local travel experts combine deep knowledge with personalized service to create your perfect East African adventure.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {expertise.map((item, index) => {
+              const IconComponent = item.icon;
+              return (
+                <div key={index} className="group text-center">
+                  <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-mindaro/20 hover:shadow-xl transition-all duration-300 hover:scale-105">
+                    <div className="bg-mindaro/20 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-mindaro/30 transition-colors duration-300">
+                      <IconComponent className="w-8 h-8 text-beaver" />
+                    </div>
+                    <h3 className="font-semibold text-eerie-black text-xl mb-4">{item.title}</h3>
+                    <p className="text-beaver leading-relaxed">{item.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-16 px-4">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-r from-mindaro/10 to-vanilla/10 backdrop-blur-sm rounded-3xl p-12 border border-mindaro/20">
+            <h2 className="font-playfair text-4xl font-bold text-eerie-black mb-6">
+              Ready to Explore Kenya?
+            </h2>
+            <p className="text-xl text-beaver mb-8 max-w-2xl mx-auto">
+              Let our certified local experts craft your perfect East African adventure. From breathtaking landscapes to diverse wildlife and rich heritage.
+            </p>
+            <Link 
+              to="/contact"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-mindaro to-vanilla text-eerie-black px-10 py-5 rounded-full font-semibold text-lg hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+            >
+              <span>Plan Your Adventure</span>
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 

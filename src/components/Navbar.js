@@ -23,6 +23,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
+     { name: 'Services', path: '/services' },
     { name: 'Destinations', path: '/destinations' },
     { name: 'Contact', path: '/contact' }
   ];
@@ -79,31 +80,48 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Enhanced Logo */}
+          {/* Enhanced Professional Logo */}
           <Link 
             to="/" 
             className="flex items-center space-x-4 group"
             onClick={handleLinkClick}
           >
             <div className="relative">
-              {/* Logo container with better visibility */}
-              <div className="w-14 h-14 bg-gradient-to-br from-savanna-light via-savanna-cream to-savanna-light rounded-full flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-2xl ring-2 ring-savanna-light/20 group-hover:ring-savanna-light/40">
-                <img 
-                  src={logo} 
-                  alt="Savanna Journeys" 
-                  className="w-10 h-10 object-contain filter drop-shadow-sm" 
-                />
+              {/* Elegant logo container with layered design */}
+              <div className="relative w-16 h-16 md:w-18 md:h-18">
+                {/* Outer ring with gradient border */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-savanna-light via-savanna-cream to-savanna-brown p-0.5 group-hover:p-1 transition-all duration-500 shadow-xl">
+                  <div className="w-full h-full rounded-full bg-gradient-to-br from-savanna-dark via-savanna-brown to-savanna-dark flex items-center justify-center">
+                    {/* Inner logo container */}
+                    <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-savanna-cream/90 to-savanna-light/90 flex items-center justify-center transform group-hover:scale-105 transition-all duration-300 shadow-inner">
+                      <img 
+                        src={logo} 
+                        alt="Savanna Journeys" 
+                        className="w-8 h-8 md:w-10 md:h-10 object-contain filter contrast-110 brightness-110" 
+                      />
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Ambient glow effect */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-savanna-light/20 to-savanna-cream/20 blur-lg scale-125 opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                
+                {/* Subtle pulse animation */}
+                <div className="absolute inset-0 rounded-full bg-savanna-light/10 animate-pulse"></div>
               </div>
-              {/* Subtle glow effect for better visibility */}
-              <div className="absolute inset-0 w-14 h-14 bg-savanna-light/10 rounded-full blur-md group-hover:bg-savanna-light/20 transition-all duration-300"></div>
             </div>
             
-            <div className="flex flex-col">
-              <span className={`font-playfair font-bold text-xl md:text-2xl leading-tight transition-colors duration-300 ${getLogoTextClasses()} drop-shadow-sm`}>
+            <div className="flex flex-col space-y-0.5">
+              <span className={`font-playfair font-bold text-xl md:text-2xl xl:text-3xl leading-none transition-all duration-300 ${getLogoTextClasses()} filter drop-shadow-lg`}>
                 Savanna Journeys
               </span>
-              <span className={`font-raleway text-xs uppercase tracking-widest transition-colors duration-300 ${getLogoSubtextClasses()} drop-shadow-sm`}>
-                Safari Adventures
-              </span>
+              <div className="flex items-center space-x-2">
+                <div className="w-8 h-px bg-gradient-to-r from-transparent via-savanna-light to-transparent"></div>
+                <span className={`font-raleway text-xs md:text-sm uppercase tracking-[0.2em] transition-all duration-300 ${getLogoSubtextClasses()} filter drop-shadow-sm`}>
+                  Safari Adventures
+                </span>
+                <div className="w-8 h-px bg-gradient-to-r from-transparent via-savanna-light to-transparent"></div>
+              </div>
             </div>
           </Link>
 

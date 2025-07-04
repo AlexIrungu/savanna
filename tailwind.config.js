@@ -22,6 +22,9 @@ module.exports = {
       fontFamily: {
         'playfair': ['"Playfair Display"', 'serif'],
         'raleway': ['Raleway', 'sans-serif'],
+        // Set default font families
+        'sans': ['Raleway', 'sans-serif'], // This makes Raleway the default sans-serif
+        'serif': ['"Playfair Display"', 'serif'], // This makes Playfair the default serif
       }
     },
   },
