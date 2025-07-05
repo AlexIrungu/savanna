@@ -32,7 +32,7 @@ const Destinations = ({ onDestinationSelect }) => {
       id: 1,
       name: "Maasai Mara",
       description: "Witness the great migration and abundant wildlife in Kenya's most famous reserve",
-      image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1564101160531-4838e8a5f4e7?w=600&h=400&fit=crop",
       gallery: [
         "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&h=400&fit=crop",
         "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&h=400&fit=crop",
@@ -59,7 +59,7 @@ const Destinations = ({ onDestinationSelect }) => {
       id: 2,
       name: "Nairobi",
       description: "Kenya's vibrant capital and business hub with modern amenities and cultural attractions",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1611144727915-ef30a08aaeb3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bmFpcm9iaXxlbnwwfHwwfHx8MA%3D%3D",
       gallery: [
         "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
         "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=600&h=400&fit=crop"
@@ -84,7 +84,7 @@ const Destinations = ({ onDestinationSelect }) => {
       id: 3,
       name: "Diani Beach",
       description: "Pristine white sands and crystal clear waters on Kenya's stunning coastline",
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGRpYW5pJTIwYmVhY2h8ZW58MHx8MHx8fDA%3D",
       gallery: [
         "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
         "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop"
@@ -110,7 +110,7 @@ const Destinations = ({ onDestinationSelect }) => {
       id: 4,
       name: "Mount Kenya",
       description: "Africa's second-highest peak with breathtaking landscapes and diverse ecosystems",
-      image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
+      image: "https://plus.unsplash.com/premium_photo-1664304370557-233bccc0ac85?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bXQlMjBrZW55YXxlbnwwfHwwfHx8MA%3D%3D",
       gallery: [
         "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
         "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop"
@@ -135,7 +135,7 @@ const Destinations = ({ onDestinationSelect }) => {
       id: 5,
       name: "Lamu Island",
       description: "UNESCO World Heritage site with rich Swahili culture and timeless charm",
-      image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1711802536786-149a0d0c5879?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGFtdSUyMGlzbGFuZHxlbnwwfHwwfHx8MA%3D%3D",
       gallery: [
         "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop",
         "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&h=400&fit=crop"
@@ -160,7 +160,7 @@ const Destinations = ({ onDestinationSelect }) => {
       id: 6,
       name: "Amboseli",
       description: "Iconic views of Mt. Kilimanjaro backdrop with spectacular elephant herds",
-      image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1511282491208-d9b80e3deaee?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OTF8fGFtYm9zZWxpfGVufDB8fDB8fHww",
       gallery: [
         "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&h=400&fit=crop",
         "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&h=400&fit=crop"

@@ -51,11 +51,11 @@ const DestinationDetails = () => {
       name: "Maasai Mara",
       description: "Witness the great migration and abundant wildlife in Kenya's most famous reserve",
       detailedDescription: "The Maasai Mara National Reserve is one of Africa's most celebrated wildlife destinations. Spanning over 1,510 square kilometers, this remarkable ecosystem serves as the northern extension of Tanzania's Serengeti National Park. The reserve is renowned for hosting the Great Migration, where over 1.5 million wildebeest, zebras, and gazelles traverse the plains.",
-      image: "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1564101160531-4838e8a5f4e7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fG1hYXNhaSUyMG1hcmF8ZW58MHx8MHx8fDA%3D",
       gallery: [
-        "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1564760055775-d63b17a55c44?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1543107484-b13a21b26e8c?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWFhc2FpJTIwbWFyYXxlbnwwfHwwfHx8MA%3D%3D",
+        "https://images.unsplash.com/photo-1620693776767-e929c5724b49?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fG1hYXNhaSUyMG1hcmF8ZW58MHx8MHx8fDA%3D",
+        "https://images.unsplash.com/photo-1721990251282-973d6004beb2?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjB8fG1hYXNhaSUyMG1hcmF8ZW58MHx8MHx8fDA%3D"
       ],
       duration: "3-5 Days",
       bestTime: "July - October",
@@ -125,8 +125,8 @@ const DestinationDetails = () => {
       detailedDescription: "Nairobi is Kenya's bustling capital city that perfectly blends urban sophistication with raw African beauty. Known as the 'Green City in the Sun', Nairobi offers a unique mix of modern skyscrapers, historical landmarks, and wildlife experiences just minutes from the city center. From the iconic Nairobi National Park to the vibrant markets and museums, the city provides diverse experiences for every traveler.",
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
       gallery: [
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1577717903315-1691ae25ab3f?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1611144727915-ef30a08aaeb3?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bmFpcm9iaXxlbnwwfHwwfHx8MA%3D%3D",
+        "https://images.unsplash.com/photo-1521667815225-4d95a3f3a31a?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bmFpcm9iaSUyMG5pZ2h0fGVufDB8fDB8fHww"
       ],
       duration: "1-3 Days",
       bestTime: "Year Round",
@@ -195,8 +195,8 @@ const DestinationDetails = () => {
       detailedDescription: "Diani Beach is Kenya's premier beach destination, boasting 17 kilometers of powdery white sand and turquoise waters. Located on the Indian Ocean coast south of Mombasa, Diani offers world-class resorts, water sports, and a relaxed tropical atmosphere. The coral reef just offshore provides excellent snorkeling and diving opportunities with abundant marine life.",
       image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop",
       gallery: [
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1691161510065-298039a5b51b?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZGlhbmklMjBiZWFjaHxlbnwwfHwwfHx8MA%3D%3D",
+        "https://plus.unsplash.com/premium_photo-1675039871449-62f86fb78a70?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGRpYW5pJTIwYmVhY2h8ZW58MHx8MHx8fDA%3D"
       ],
       duration: "3-7 Days",
       bestTime: "December - March",
@@ -267,8 +267,8 @@ const DestinationDetails = () => {
       detailedDescription: "Mount Kenya is an ancient extinct volcano and Africa's second highest mountain at 5,199 meters. The mountain offers spectacular scenery with its jagged glacier-clad peaks, alpine forests, and unique high-altitude vegetation. Trekking routes vary from relatively easy walks to technical climbs, all offering stunning views and the chance to see unique wildlife like elephants, buffalo, and rare high-altitude species.",
       image: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&h=400&fit=crop",
       gallery: [
-        "https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&h=600&fit=crop"
+        "https://plus.unsplash.com/premium_photo-1664304370557-233bccc0ac85?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bXQlMjBrZW55YXxlbnwwfHwwfHx8MA%3D%3D",
+        "https://images.unsplash.com/photo-1646159755791-54e741749028?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bXQlMjBrZW55YXxlbnwwfHwwfHx8MA%3D%3D"
       ],
       duration: "4-7 Days",
       bestTime: "January - March",
@@ -337,8 +337,8 @@ const DestinationDetails = () => {
       detailedDescription: "Lamu Old Town is Kenya's oldest continually inhabited settlement and a UNESCO World Heritage Site. This magical island preserves Swahili culture with its narrow streets, ornate doors, and traditional dhows. With no cars on the island, transportation is by donkey or boat, maintaining a peaceful, timeless atmosphere. The blend of African, Arab, and Indian influences creates a unique cultural experience.",
       image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600&h=400&fit=crop",
       gallery: [
-        "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1711802536772-0ef59886bc1b?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bGFtdSUyMGlzbGFuZHxlbnwwfHwwfHx8MA%3D%3D",
+        "https://images.unsplash.com/photo-1619550481986-5751a79d0d1b?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fGxhbXUlMjBpc2xhbmR8ZW58MHx8MHx8fDA%3D"
       ],
       duration: "2-4 Days",
       bestTime: "October - April",
@@ -407,8 +407,8 @@ const DestinationDetails = () => {
       detailedDescription: "Amboseli National Park is famous for its large elephant herds and stunning views of Mount Kilimanjaro across the border in Tanzania. The park's varied ecosystems include dried-up lake beds, swamps, and savannah, supporting diverse wildlife. Amboseli is one of the best places in Africa to observe elephants at close range, with some of the largest tusks recorded.",
       image: "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=600&h=400&fit=crop",
       gallery: [
-        "https://images.unsplash.com/photo-1551632436-cbf8dd35adfa?w=800&h=600&fit=crop",
-        "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=800&h=600&fit=crop"
+        "https://images.unsplash.com/photo-1592670130429-fa412d400f50?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjR8fGFtYm9zZWxpfGVufDB8fDB8fHww",
+        "https://images.unsplash.com/photo-1643735088226-1ce562fca0ee?w=1920&h=1080&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjh8fGFtYm9zZWxpfGVufDB8fDB8fHww"
       ],
       duration: "2-3 Days",
       bestTime: "June - October",

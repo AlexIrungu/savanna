@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MapPin, Mail, Phone, Send, CheckCircle, AlertCircle } from 'lucide-react';
+import { MapPin, Mail, Phone, Send, CheckCircle, AlertCircle, ArrowRight, Calendar } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
 const HomeContactSection = () => {
@@ -20,9 +20,6 @@ const HomeContactSection = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted!');
-    console.log('Form data:', formData);
-    
     setIsSubmitting(true);
     
     try {
@@ -31,19 +28,15 @@ const HomeContactSection = () => {
         from_email: formData.email,
         travel_dates: formData.travelDates,
         message: formData.message,
-        to_name: 'Journeys Savanna Team' // Optional: recipient name
+        to_name: 'Journeys Savanna Team'
       };
 
-      console.log('Sending email with params:', templateParams);
-
-      const result = await emailjs.send(
-        'service_suw3umd',     // Your service ID
-        'template_zla55xc',    // Your template ID (we'll create a new one)
+      await emailjs.send(
+        'service_suw3umd',
+        'template_zla55xc',
         templateParams,
-        'UcKrhFiBPGrbySsJl'    // Your public key
+        'UcKrhFiBPGrbySsJl'
       );
-
-      console.log('EmailJS Success:', result);
       
       setSubmitStatus('success');
       setFormData({
@@ -56,7 +49,6 @@ const HomeContactSection = () => {
       setTimeout(() => setSubmitStatus(''), 5000);
       
     } catch (error) {
-      console.error('EmailJS Error:', error);
       setSubmitStatus('error');
       setTimeout(() => setSubmitStatus(''), 5000);
     } finally {
@@ -72,155 +64,204 @@ const HomeContactSection = () => {
   };
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-24 bg-gradient-to-b from-ghost-white to-white">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid lg:grid-cols-2 gap-16">
-          <div>
-            <h2 className="font-playfair text-4xl md:text-5xl font-bold text-savanna-dark mb-6">
-              Let's Plan Your Adventure
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8">
+            <div className="inline-flex items-center bg-beaver/10 text-beaver rounded-full px-4 py-2 text-sm font-semibold mb-4">
+              <Send className="w-4 h-4 mr-2" />
+              Get In Touch
+            </div>
+            
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-savanna-dark leading-tight">
+              Let's Craft Your <span className="text-beaver">Perfect Safari</span>
             </h2>
-            <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-              Ready to embark on your Kenyan journey? Our travel experts are here to craft 
-              the perfect experience tailored just for you.
+            
+            <p className="text-lg text-gray-700 leading-relaxed">
+              Our travel experts are standing by to design your dream Kenyan adventure. 
+              Share your vision and we'll handle every detail.
             </p>
             
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4">
-                <div className="bg-beaver p-3 rounded-full">
-                  <Phone className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-semibold text-savanna-dark">Call Us</div>
-                  <div className="text-gray-600">+254 742 779 434</div>
-                </div>
-              </div>
-              
-              <div className="flex items-center space-x-4">
-                <div className="bg-beaver p-3 rounded-full">
-                  <Mail className="w-6 h-6 text-white" />
-                </div>
-                <div>
-                  <div className="font-semibold text-savanna-dark">Email Us</div>
-                  <div className="text-gray-600">journeyssavanna@gmail.com</div>
+            <div className="grid md:grid-cols-2 gap-6 pt-4">
+              <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                <div className="flex items-center space-x-4">
+                  <div className="bg-gradient-to-br from-beaver to-savanna-dark p-3 rounded-full">
+                    <Phone className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-savanna-dark">Call Us</div>
+                    <div className="text-gray-600">+254 742 779 434</div>
+                  </div>
                 </div>
               </div>
               
-              <div className="flex items-center space-x-4">
-                <div className="bg-beaver p-3 rounded-full">
-                  <MapPin className="w-6 h-6 text-white" />
+              <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                <div className="flex items-center space-x-4">
+                  <div className="bg-gradient-to-br from-beaver to-savanna-dark p-3 rounded-full">
+                    <Mail className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-savanna-dark">Email Us</div>
+                    <div className="text-gray-600">journeyssavanna@gmail.com</div>
+                  </div>
                 </div>
-                <div>
-                  <div className="font-semibold text-savanna-dark">Visit Us</div>
-                  <div className="text-gray-600">Nairobi, Kenya</div>
+              </div>
+              
+              <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                <div className="flex items-center space-x-4">
+                  <div className="bg-gradient-to-br from-beaver to-savanna-dark p-3 rounded-full">
+                    <MapPin className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-savanna-dark">Visit Us</div>
+                    <div className="text-gray-600">Nairobi, Kenya</div>
+                  </div>
+                </div>
+              </div>
+              
+              <div className="bg-white/50 backdrop-blur-sm p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all">
+                <div className="flex items-center space-x-4">
+                  <div className="bg-gradient-to-br from-beaver to-savanna-dark p-3 rounded-full">
+                    <Calendar className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-semibold text-savanna-dark">Office Hours</div>
+                    <div className="text-gray-600">Mon-Fri: 8AM-6PM EAT</div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="bg-ghost-white rounded-2xl p-8">
-            {/* Success Message */}
-            {submitStatus === 'success' && (
-              <div className="mb-6 p-4 bg-green-50 border-l-4 border-green-400 rounded-lg">
-                <div className="flex items-center">
-                  <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
-                  <p className="text-green-700 font-medium">
-                    Thank you! Your message has been sent successfully. We'll contact you soon.
-                  </p>
-                </div>
-              </div>
-            )}
-            
-            {/* Error Message */}
-            {submitStatus === 'error' && (
-              <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-400 rounded-lg">
-                <div className="flex items-center">
-                  <AlertCircle className="w-5 h-5 text-red-400 mr-2" />
-                  <p className="text-red-700 font-medium">
-                    Sorry, there was an error sending your message. Please try again or contact us directly.
-                  </p>
-                </div>
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label className="block text-sm font-semibold text-savanna-dark mb-2">
-                  Full Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="fullName"
-                  value={formData.fullName}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-beaver focus:outline-none focus:ring-2 focus:ring-beaver/20 transition-all"
-                  placeholder="Enter your full name"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-semibold text-savanna-dark mb-2">
-                  Email Address <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-beaver focus:outline-none focus:ring-2 focus:ring-beaver/20 transition-all"
-                  placeholder="Enter your email"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-semibold text-savanna-dark mb-2">
-                  Travel Dates <span className="text-red-500">*</span>
-                </label>
-                <input
-                  type="text"
-                  name="travelDates"
-                  value={formData.travelDates}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-beaver focus:outline-none focus:ring-2 focus:ring-beaver/20 transition-all"
-                  placeholder="When would you like to travel?"
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-semibold text-savanna-dark mb-2">
-                  Message <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows="4"
-                  className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-beaver focus:outline-none focus:ring-2 focus:ring-beaver/20 transition-all resize-none"
-                  placeholder="Tell us about your dream Kenya experience..."
-                />
-              </div>
-              
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-beaver text-white py-3 rounded-lg font-semibold hover:bg-vanilla hover:text-savanna-dark transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2"
-              >
-                {isSubmitting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    <span>Sending...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send className="w-5 h-5" />
-                    <span>Send Message</span>
-                  </>
+          <div className="relative">
+            <div className="bg-white rounded-3xl shadow-xl overflow-hidden border border-gray-100">
+              <div className="p-8 md:p-10">
+                {/* Status Messages */}
+                {submitStatus === 'success' && (
+                  <div className="mb-6 p-4 bg-green-50 border-l-4 border-green-400 rounded-lg">
+                    <div className="flex items-center">
+                      <CheckCircle className="w-5 h-5 text-green-400 mr-2" />
+                      <p className="text-green-700 font-medium">
+                        Thank you! Your message has been sent successfully. We'll contact you soon.
+                      </p>
+                    </div>
+                  </div>
                 )}
-              </button>
-            </form>
+                
+                {submitStatus === 'error' && (
+                  <div className="mb-6 p-4 bg-red-50 border-l-4 border-red-400 rounded-lg">
+                    <div className="flex items-center">
+                      <AlertCircle className="w-5 h-5 text-red-400 mr-2" />
+                      <p className="text-red-700 font-medium">
+                        Sorry, there was an error sending your message. Please try again or contact us directly.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <h3 className="font-serif text-2xl font-bold text-savanna-dark mb-6">
+                  Send Us A Message
+                </h3>
+                
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Full Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-beaver focus:ring-2 focus:ring-beaver/20 transition-all placeholder-gray-400"
+                      placeholder="Your full name"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-beaver focus:ring-2 focus:ring-beaver/20 transition-all placeholder-gray-400"
+                      placeholder="Your email address"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Travel Dates <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      name="travelDates"
+                      value={formData.travelDates}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-beaver focus:ring-2 focus:ring-beaver/20 transition-all placeholder-gray-400"
+                      placeholder="Approximate travel dates"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Your Safari Vision <span className="text-red-500">*</span>
+                    </label>
+                    <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
+                      required
+                      rows="4"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:border-beaver focus:ring-2 focus:ring-beaver/20 transition-all placeholder-gray-400 resize-none"
+                      placeholder="Tell us about your dream safari experience..."
+                    />
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="group w-full bg-gradient-to-r from-beaver to-savanna-dark text-white py-4 rounded-xl font-semibold hover:from-savanna-dark hover:to-beaver transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center space-x-2 shadow-lg hover:shadow-xl"
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                        <span>Sending...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Send Message</span>
+                        <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                      </>
+                    )}
+                  </button>
+                </form>
+              </div>
+              
+              <div className="bg-gradient-to-r from-beaver/5 to-savanna-dark/5 p-6 text-center border-t border-gray-100">
+                <p className="text-sm text-gray-600">
+                  We respect your privacy. Your information will never be shared.
+                </p>
+              </div>
+            </div>
+            
+            {/* <div className="absolute -bottom-6 -right-6 bg-gradient-to-r from-vanilla to-mindaro p-6 rounded-2xl shadow-2xl border border-white/20 hidden lg:block">
+              <div className="flex items-center space-x-3">
+                <div className="bg-white/20 p-3 rounded-full">
+                  <CheckCircle className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <div className="font-bold text-savanna-dark text-lg">24-Hour Response</div>
+                  <div className="text-sm text-savanna-dark/80">Guarantee</div>
+                </div>
+              </div>
+            </div> */}
           </div>
         </div>
       </div>
